@@ -20,7 +20,7 @@ public class TaskSeven {
         boolean minUsed = false;
 
         for (int value : arr) {
-            if (value == max && max != min) {
+            if (value == max ) {
                 if (maxUsed) continue;
                 maxUsed = true;
             } else if (value == min) {

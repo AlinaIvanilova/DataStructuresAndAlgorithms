@@ -7,6 +7,7 @@ public class Main {
         int[] arr = ArrayUtils.generateArray(10, -10, 10);
         ArrayUtils.printArray("Мій масив", arr);
         System.out.println();
+
         TaskOne.task1(arr, -5, 10);
         System.out.println();
         TaskTwo.task2(arr);

@@ -20,14 +20,12 @@ public class TicTacToe {
         }
     }
 
-    // Очищає поле: клітинки підписані цифрами 1-9
     static void resetBoard() {
         for (int i = 0; i < 9; i++) {
             board[i] = (char) ('1' + i);
         }
     }
 
-    // Одна партія. Повертає true, якщо гравець вирішив вийти з програми
     static boolean playGame(Scanner scanner) {
         char player = 'X';
 
@@ -55,7 +53,6 @@ public class TicTacToe {
         return false;
     }
 
-    // Питає, чи грати ще. Приймає: т / так / y / yes та н / ні / n / no
     static boolean askPlayAgain(Scanner scanner) {
         System.out.print("Зіграємо ще раз? (т/н): ");
         while (true) {
@@ -72,7 +69,6 @@ public class TicTacToe {
         }
     }
 
-    // Читає номер клітинки, поки гравець не введе коректне значення
     static int readCell(Scanner scanner) {
         while (true) {
             String input = scanner.next();
@@ -103,9 +99,9 @@ public class TicTacToe {
 
     static boolean hasWon(char p) {
         int[][] lines = {
-                {0, 1, 2}, {3, 4, 5}, {6, 7, 8},   // рядки
-                {0, 3, 6}, {1, 4, 7}, {2, 5, 8},   // стовпці
-                {0, 4, 8}, {2, 4, 6}               // діагоналі
+                {0, 1, 2}, {3, 4, 5}, {6, 7, 8},  
+                {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+                {0, 4, 8}, {2, 4, 6}
         };
         for (int[] l : lines) {
             if (board[l[0]] == p && board[l[1]] == p && board[l[2]] == p) {

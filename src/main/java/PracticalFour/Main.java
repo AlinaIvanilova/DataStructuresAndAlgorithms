@@ -11,8 +11,21 @@ public class Main {
         taskTwo(2, 5);
 
         System.out.println("");
+        System.out.println(taskThree(1));
+        System.out.println(taskThree(2));
+        System.out.println(taskThree(4));
         System.out.println(taskThree(8));
+        System.out.println(taskThree(16));
+        System.out.println(taskThree(32));
+        System.out.println(taskThree(64));
+        System.out.println(taskThree(128));
+        System.out.println(taskThree(256));
+        System.out.println(taskThree(512));
+        System.out.println(taskThree(1024));
+        System.out.println(taskThree(6));
+        System.out.println(taskThree(5));
         System.out.println(taskThree(3));
+        System.out.println(taskThree(1));
 
         System.out.println("");
         System.out.println(taskFour(179));

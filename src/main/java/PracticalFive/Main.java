@@ -1,5 +1,6 @@
 package PracticalFive;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -16,6 +17,12 @@ public class Main {
             long end = System.nanoTime();
             System.out.println("QuickSort (зростання): " + (end - start) / 1_000_000.0 + " мс, впорядкований: " + isSorted(arr, true));
 
+            arr = arr.clone();
+            start = System.nanoTime();
+            quickSort(arr, true);
+            end = System.nanoTime();
+            System.out.println("QuickSort (зростання): " + (end - start) / 1_000_000.0 + " мс, впорядкований: " + isSorted(arr, true));
+
             arr = original.clone();
             start = System.nanoTime();
             quickSort(arr, false);
@@ -23,6 +30,12 @@ public class Main {
             System.out.println("QuickSort (спадання): " + (end - start) / 1_000_000.0 + " мс, впорядкований: " + isSorted(arr, false));
 
             arr = original.clone();
+            start = System.nanoTime();
+            bubbleSort(arr);
+            end = System.nanoTime();
+            System.out.println("Бульбашка: " + (end - start) / 1_000_000.0 + " мс, впорядкований: " + isSorted(arr, true));
+
+
             start = System.nanoTime();
             bubbleSort(arr);
             end = System.nanoTime();
@@ -45,6 +58,7 @@ public class Main {
     }
 
     static int[] generateArray(int lenght, int max, int min) {
+
         Random random = new Random();
         int[] arr = new int[lenght];
         for (int i = 0; i < lenght; i++) {
@@ -60,19 +74,12 @@ public class Main {
     }
 
      static int partition(int[] arr, int left, int right, boolean ascending) {
-        int pivot = arr[right]; //еталон або півота
+        int pivot = arr[(right + left) / 2]; //еталон або півота
         int i = left;
         for (int j = left; j < right; j++) {
-            if (ascending) { //за зростанням
-                if (arr[j] < pivot) {
+            if (ascending && arr[j] < pivot || !ascending && arr[j] > pivot) { //за зростанням
                     swap(arr, i, j);
                     i++;
-                }
-            } else { //за спаданням
-                if (arr[j] > pivot) {
-                    swap(arr, i, j);
-                    i++;
-                }
             }
         }
         swap(arr, i, right);
@@ -81,7 +88,7 @@ public class Main {
 
      static void quickSortRec(int[] arr, int left, int right, boolean ascending) {
         if (left < right) {
-            int pivot/*індекс*/ = partition(arr, left, right, ascending);
+            int pivot = partition(arr, left, right, ascending);
             quickSortRec(arr, left, pivot - 1, ascending);
             quickSortRec(arr, pivot + 1, right, ascending);
         }
@@ -93,24 +100,21 @@ public class Main {
 
      static boolean isSorted(int[] arr, boolean ascending) {
         for (int i = 0; i < arr.length - 1; i++) {
-            if (ascending) {
-                if (arr[i] > arr[i + 1]) {
+            if (ascending && arr[i] > arr[i + 1]  || !ascending && arr[i] < arr[i + 1]) {
                     return false;
-                }
-            } else {
-                if (arr[i] < arr[i + 1]) {
-                    return false;
-                }
             }
         }
          return true;
      }
 
     static void bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
+        boolean flag = true;
+        for (int i = 0; i < arr.length - 1 && flag; i++) {
+            flag = false;
             for (int j = 0; j < arr.length - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j + 1);
+                    flag = true;
                 }
             }
         }

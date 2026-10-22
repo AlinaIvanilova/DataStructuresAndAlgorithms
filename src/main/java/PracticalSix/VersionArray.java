@@ -105,6 +105,10 @@ public class VersionArray<T> {
         return data.length;
     }
 
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
     // рядкове подання, елементи не видаляються
     public String toString() {
         return Arrays.toString(Arrays.copyOf(data, top + 1));

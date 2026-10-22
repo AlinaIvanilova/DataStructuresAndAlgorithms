@@ -20,6 +20,10 @@ public class QueueNode<T> {
         queue.clear();
         IO.println("Черга після clear: " + queue);
         IO.println("count = " + queue.count());
+
+
+        QueueArray<String> q = new QueueArray<>(10);
+        q.enqueue("hj");
     }
 
     // зберігає значення і посилання на наступний вузол

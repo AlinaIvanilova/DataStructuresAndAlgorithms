@@ -1,7 +1,9 @@
 package PracticalEight;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryThree<T extends Comparable<T>> {
-    private static int DEFAULT_CAPACITY = 10;
 
     static void main() {
         BinaryThree<Integer> tree = new BinaryThree();
@@ -13,6 +15,9 @@ public class BinaryThree<T extends Comparable<T>> {
         tree.add(7);
         tree.add(12);
         tree.add(20);
+        tree.add(50);
+        tree.add(30);
+        tree.add(40);
         IO.println("Всі елементи: " + tree);
         IO.println("count = " + tree.count());
         tree.printTree();
@@ -51,10 +56,10 @@ public class BinaryThree<T extends Comparable<T>> {
         IO.println("count = " + tree.count());
 
         IO.println(" ");
-        BinaryThree<Integer> small = new BinaryThree<>(2);
+        BinaryThree<Integer> small = new BinaryThree<>();
         small.add(1);
         small.add(2);
-        small.add(3);
+
     }
 
     /**
@@ -65,6 +70,8 @@ public class BinaryThree<T extends Comparable<T>> {
         T data;
         Node<T> left;
         Node<T> right;
+        int level;
+        int spacing;
 
         Node(T value) {
             data = value;
@@ -77,40 +84,19 @@ public class BinaryThree<T extends Comparable<T>> {
     private Node<T> root;
     /** Кількість елементів. */
     private int count;
-    /** Максимальна кількість елементів. */
-    private final int capacity;
-
-    /**
-     * Конструктор при викликанні.
-     * @param capacity Максимальний розмір.
-     */
-    public  BinaryThree(int capacity) {
-        this.capacity = capacity;
-        root = null;
-        count = 0;
-    }
-
-    /**
-     * Конструктор з дефолтним значенням.
-     */
-    public BinaryThree() {
-        this(DEFAULT_CAPACITY);
-    }
 
     /**
      * Дрдає елемент.
      * @param value Значення, яке дає кристувач.
      */
     public void add(T value) {
-        if (count == capacity) {
-            throw new RuntimeException("Дерево повне");
-        }
 
         Node<T> node = new Node<>(value);
         count++;
 
         if (root == null) {
             root = node;
+            node.level = 0;
             return;
         }
 
@@ -118,12 +104,14 @@ public class BinaryThree<T extends Comparable<T>> {
         while (true) {
             if (value.compareTo(current.data) < 0) {
                 if (current.left == null) {
+                    node.level = current.level + 1;
                     current.left = node;
                     return;
                 }
                 current = current.left;
             } else {
                 if (current.right == null) {
+                    node.level = current.level + 1;
                     current.right = node;
                     return;
                 }
@@ -303,4 +291,29 @@ public class BinaryThree<T extends Comparable<T>> {
         // потім ліва частина, вона буде знизу
         printNode(node.left, level + 1);
     }
+
+    public void printTreeBeautiful() {
+        if (root == null) {
+            IO.println("дерево порожнє");
+            return;
+        }
+        printNode(root, 0);
+    }
+
+    private List<T> wsf(Node<T> node) {
+        int baseWidth = (int) Math.ceil(Math.log10(count) / Math.log10(2));
+        int baseSpacing = (baseWidth * 2 - 1) * 3;
+
+        Object[] result = new Object[count];
+        result[0] = node;
+        node.spacing = baseSpacing / 2 - 1;
+//      обхід дерева в ширину
+        for (int i = 0, j = 1; i < count; i++) {
+
+        }
+
+    }
+
 }
+
+// розвернути на 90 градусів варік 2

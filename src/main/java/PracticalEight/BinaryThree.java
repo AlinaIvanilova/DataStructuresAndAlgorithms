@@ -15,9 +15,7 @@ public class BinaryThree<T extends Comparable<T>> {
         tree.add(7);
         tree.add(12);
         tree.add(20);
-        tree.add(50);
-        tree.add(30);
-        tree.add(40);
+
         IO.println("Всі елементи: " + tree);
         IO.println("count = " + tree.count());
         tree.printTree();
@@ -66,7 +64,7 @@ public class BinaryThree<T extends Comparable<T>> {
      * Зберігає значення і посилання на лівого та правого нащадка.
      * @param <T> Тип значення, що зберігається у вузлі.
      */
-    private static class Node<T> {
+    static class Node<T> {
         T data;
         Node<T> left;
         Node<T> right;
@@ -81,7 +79,7 @@ public class BinaryThree<T extends Comparable<T>> {
     }
 
     /** Найперший вузол. */
-    private Node<T> root;
+    Node<T> root;
     /** Кількість елементів. */
     private int count;
 
@@ -300,20 +298,19 @@ public class BinaryThree<T extends Comparable<T>> {
         printNode(root, 0);
     }
 
-    private List<T> wsf(Node<T> node) {
-        int baseWidth = (int) Math.ceil(Math.log10(count) / Math.log10(2));
-        int baseSpacing = (baseWidth * 2 - 1) * 3;
-
-        Object[] result = new Object[count];
-        result[0] = node;
-        node.spacing = baseSpacing / 2 - 1;
-//      обхід дерева в ширину
-        for (int i = 0, j = 1; i < count; i++) {
-
-        }
-
-    }
+//    private List<T> wsf(Node<T> node) {
+//        int baseWidth = (int) Math.ceil(Math.log10(count) / Math.log10(2));
+//        int baseSpacing = (baseWidth * 2 - 1) * 3;
+//
+//        Object[] result = new Object[count];
+//        result[0] = node;
+//        node.spacing = baseSpacing / 2 - 1;
+////      обхід дерева в ширину
+//        for (int i = 0, j = 1; i < count; i++) {
+//
+//        }
+//
+//    }
 
 }
 
-// розвернути на 90 градусів варік 2
